@@ -1,0 +1,69 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background-color: #2e4057;
+  }
+  
+  h1 {
+    margin-top: 80px;
+    font-weight: bold;
+  }
+  
+  p {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  /* Boostrap Buttons Styling */
+  
+  .btn-primary {
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 40px;
+    background: transparent;
+    transition: all 0.3s ease 0s;
+    width: 50%;
+    margin-left: 15px;
+    bottom: 20px;
+    height: 3.5%;
+  }
+  
+  .btn-primary:hover {
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
+  }
+  
+  .form-control {
+    border-radius: 2rem;
+    height: 35px;
+    border: 1px solid black;
+    width: 50%;
+    display: inline-block;
+  }
+  
+  .forgot-pw {
+    position: relative;
+    font-size: 11px;
+    margin-right: 41%;
+    bottom: 15px;
+  }
+  
+  .register {
+    position: relative;
+    bottom: 1%;
+  }
+  
