@@ -9,16 +9,28 @@
 
 <div class="container">
     @include('includes.header')
-    <form class="form-inline" style="background-color:#2e4057">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="color:white"> Ordenar Por: </label>
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            <option value="1">Preço</option>
-            <option value="2">Nome</option>
-        </select> <a type="button" class="btn btn-outline-light">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
-            </svg> </a>
+    <form class="form-inline" style="background-color:#2e4057" method="get">
+        @csrf
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="color:white">&nbsp;Order By: </label>
+        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="select">
+            <option value="HighToLow">Price (High > Low)</option>
+            <option value="LowToHigh">Price (Low > High)</option>
+            <option value="NewestToOldest">Newest > Oldest</option>
+            <option value="OldestToNewest">Oldest > Newest</option>
+        </select>
+        <input type="submit" class="btn btn-outline-light">
     </form>
-
-    @include ('includes.footer')
-</div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-image" style="background-color:white">
+                <thead>
+                    <tr>
+                        <th scope="col">Picture</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Add To Cart</th>
+                    </tr>
+                </thead>
+                @yield('content')
+                @include ('includes.footer')
+        </div>
