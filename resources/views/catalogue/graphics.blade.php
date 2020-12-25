@@ -21,7 +21,7 @@ Graphic Cards | Online Store
 </tbody>
 </table>
 
-{!! $graphicCard->links('pagination::bootstrap-4') !!} <?php //pagination ?>
+{!! $graphicCard->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination ?>
 @if(Session::has('sucess'))
 <p class="alert alert-success">{{ Session::get('sucess') }}</p>
 @endif

@@ -19,8 +19,7 @@ Consoles | Online Store
     @endforelse
 </tbody>
 </table>
-{!! $console->links('pagination::bootstrap-4') !!} <?php //pagination 
-                                                   ?>
+{!! $console->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination ?>                                                   ?>
 @if(Session::has('sucess'))
 <p class="alert alert-success">{{ Session::get('sucess') }}</p>
 @endif

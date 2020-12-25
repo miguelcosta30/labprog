@@ -12,7 +12,7 @@
     <form class="form-inline" style="background-color:#2e4057" method="get">
         @csrf
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="color:white">&nbsp;Order By: </label>
-        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="select">
+        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="select" >
             <option value="HighToLow">Price (High > Low)</option>
             <option value="LowToHigh">Price (Low > High)</option>
             <option value="NewestToOldest">Newest > Oldest</option>

@@ -20,7 +20,7 @@ Phones | Online Store
 </tbody>
 </table>
 
-{!! $phones->links('pagination::bootstrap-4') !!} <?php //pagination 
+{!!$phones->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination )
 													?>
 @if(Session::has('sucess'))
 <p class="alert alert-success">{{ Session::get('sucess') }}</p>

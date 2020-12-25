@@ -20,8 +20,7 @@ Processors | Online Store
     @endforelse
 </tbody>
 </table>
-{!! $processors->links('pagination::bootstrap-4') !!} <?php //pagination ?>
-@if(Session::has('sucess'))
+{!! $processors->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination ?>@if(Session::has('sucess'))
 <p class="alert alert-success">{{ Session::get('sucess') }}</p>
 @endif
 </div>
