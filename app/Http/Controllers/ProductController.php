@@ -74,26 +74,6 @@ class ProductController extends Controller
         return view('catalogue/displaySearch')->with('abc', $result->paginate(1)); //paginaçao nao está a funcionar aq
     }
 
-    public function store(Request $request)
-    {
-        $product = new Product();
-        $product->name = "Intel Core i9-9900K";
-        $product->firstSpecification = "Cores: 8";
-        $product->secondSpecification = "Threads: 16";
-        $product->thirdSpecification = "Base Clock: 4GHz / Up to: 5GHz";
-        $product->type = "processor";
-        $product->price = 799.90;
-        $product->stock = 20;
-        $product->picture = file_get_contents($request->picture);
-        $product->save();
-        return redirect('/form');
-    }
-
-    public function create()
-    {
-        return view('form');
-    }
-
     public function addToCart($id)
     {
         $product = Product::findorFail($id);

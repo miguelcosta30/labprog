@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Controllers\FormControllerConsole;
-use App\Http\Controllers\FormControllerGraphicCard;
-use App\Http\Controllers\FormControllerPhone;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +28,6 @@ Route::get('/catalogue/processors',[ProductController::class,'indexProcessor']);
 Route::get('/catalogue/displaySearch',[ProductController::class,'indexSearch']);
 
 
-Route::get('/form',[ProductController::class,'create']);
-Route::post('/form', [ProductController::class,'store']);
-
 Route::get('/account/settings',[UserController::class,'indexMorada']);
 Route::get('/account/settings.php',[UserController::class,'updateMorada']);
 Route::post('/account/settings.php',[UserController::class,'updateMorada']);
@@ -50,5 +44,9 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class,'logout'
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/form',[AdminController::class,'create'])->middleware('isAdmin')->name('admin');
+Route::post('/form', [AdminController::class,'store'])->middleware('isAdmin');
+Route::get('/form',[AdminController::class,'idexAllProducts'])->middleware('isAdmin')->name('admin');
+
+
 
