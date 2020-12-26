@@ -71,13 +71,11 @@ class AdminController extends Controller
         if ($id != null) {
             $product = Product::findOrFail($id);
             $product->delete();
-            return redirect('/formEditRemove');
+            return redirect('/formEditRemove')->with('sucessRemove', 'Product Removed Sucessefully');
         }
-        return redirect()->with('sucessEdit', 'Product Edited Sucessefully');
+        return redirect('formEditRemoe');
     }
-    public function editProducts(Request $request, $id)
-    {
-        
+    public function editProducts(Request $request, $id) {
             $product = Product::findOrFail($id);
             $product->name = $request->product_name;
             $product->firstSpecification = $request->first_spec;
@@ -90,10 +88,7 @@ class AdminController extends Controller
             $product->picture = file_get_contents($request->picture);
             }
             $product->save();
-            return redirect('formEditRemove')->with('sucessEdit', 'Product Edited Sucessefully');
-            
-
-        
+            return redirect('formEditRemove')->with('sucessRemove', 'Product Edited Sucessefully');
     }
 
     public function create()
