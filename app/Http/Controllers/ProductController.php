@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+define("PAGINATON",1);
 
 class ProductController extends Controller
 {
@@ -12,19 +13,19 @@ class ProductController extends Controller
     protected function checkOrder(Request $request, $type)
     {
         if ($request->input('select') == "HighToLow") {
-            $desc = DB::table('products')->where('type', $type)->orderByDesc('price')->paginate(1);
+            $desc = DB::table('products')->where('type', $type)->orderByDesc('price')->paginate(PAGINATON);
             return $desc;
         }
         if ($request->input('select') == "LowToHigh") {
-            $asc = DB::table('products')->where('type', $type)->orderBy('price', 'ASC')->paginate(1);
+            $asc = DB::table('products')->where('type', $type)->orderBy('price', 'ASC')->paginate(PAGINATON);
             return $asc;
         }
         if ($request->input('select') == "NewestToOldest") {
-            $new = Product::where('type', $type)->latest()->paginate(1);
+            $new = Product::where('type', $type)->latest()->paginate(PAGINATON);
             return $new;
         }
         if ($request->input('select') == "OldestToNewest") {
-            $old = Product::where('type', $type)->oldest()->paginate(1);
+            $old = Product::where('type', $type)->oldest()->paginate(PAGINATON);
             return $old;
         }
         return null;
@@ -36,7 +37,7 @@ class ProductController extends Controller
             $aux = $this->checkOrder($request, 'phone');
             return view('/catalogue/phones', ['phones' => $aux]);
         }
-        $phones = DB::table('products')->where('type', 'phone')->paginate(1);
+        $phones = DB::table('products')->where('type', 'phone')->paginate(PAGINATON);
         return view('/catalogue/phones', ['phones' => $phones]);
     }
 
@@ -46,7 +47,7 @@ class ProductController extends Controller
             $aux = $this->checkOrder($request, 'graphic');
             return view('/catalogue/graphics', ['graphicCard' => $aux]);
         }
-        $graphicCard = DB::table('products')->where('type', 'graphic')->paginate(1);
+        $graphicCard = DB::table('products')->where('type', 'graphic')->paginate(PAGINATON);
         return view('/catalogue/graphics', ['graphicCard' => $graphicCard]);
     }
 
@@ -55,7 +56,7 @@ class ProductController extends Controller
             $aux = $this->checkOrder($request, 'processor');
             return view('/catalogue/processors', ['processors' => $aux]);
         }
-        $processors = DB::table('products')->where('type', 'processor')->paginate(1);
+        $processors = DB::table('products')->where('type', 'processor')->paginate(PAGINATON);
         return view('/catalogue/processors', ['processors' => $processors]);
     }
 
@@ -64,18 +65,17 @@ class ProductController extends Controller
             $aux = $this->checkOrder($request, 'console');
             return view('/catalogue/consoles', ['console' => $aux]);
         }
-        $consoles = DB::table('products')->where('type', 'console')->paginate(1);
+        $consoles = DB::table('products')->where('type', 'console')->paginate(PAGINATON);
         return view('catalogue/consoles', ['console' => $consoles]);
     }
 
     public function indexSearch(Request $request) {
         $search = $request->input('search');
         $result = DB::table('products')->where('name', 'like', '%' . $search . '%');
-        return view('catalogue/displaySearch')->with('abc', $result->paginate(1)); //paginaçao nao está a funcionar aq
+        return view('catalogue/displaySearch')->with('abc', $result->paginate(PAGINATON)); //paginaçao nao está a funcionar aq
     }
 
-    public function addToCart($id)
-    {
+    public function addToCart($id) {
         $product = Product::findorFail($id);
         $cart = session()->get('shoppingCart'); //ir buscar á sessão o nosso carinho
         if ($product->stock > 0) {

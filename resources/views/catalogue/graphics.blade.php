@@ -7,9 +7,15 @@ Graphic Cards | Online Store
 	@forelse($graphicCard as $graphic)
 	<tr>
 		<td class="w-25">
-			<img src="data:image/png;base64,{{ chunk_split(base64_encode($graphic->picture)) }}" class="img-fluid img-thumbnail" alt="graphic cards" width = "300" height = "300">
+			<img src="data:image/png;base64,{{ chunk_split(base64_encode($graphic->picture)) }}" class="img-fluid img-thumbnail" alt="graphic cards" width="300" height="300">
 		</td>
-		<td style="font-size:20px">{{$graphic->name}}</td>
+		<td style="font-size:20px">{{$graphic->name}}
+			<ul style="font-size:17px">
+				<li>{{$graphic->firstSpecification}}</li>
+				<li>{{$graphic->secondSpecification}}</li>
+				<li>{{$graphic->thirdSpecification}}</li>
+			</ul>
+		</td>
 		<td style="font-size:30px;font-weight:bold;">{{$graphic->price}}€</td>
 		<td>
 			<p class="btn-holder"><a href="{{url('/addToCart/'.$graphic->id)}}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
@@ -21,9 +27,13 @@ Graphic Cards | Online Store
 </tbody>
 </table>
 
-{!! $graphicCard->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination ?>
+{!! $graphicCard->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination 
+																				?>
 @if(Session::has('sucess'))
 <p class="alert alert-success">{{ Session::get('sucess') }}</p>
+@endif
+@if(Session::has('error'))
+<p class="alert alert-danger">{{ Session::get('error') }}</p>
 @endif
 
 </div>

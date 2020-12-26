@@ -85,46 +85,7 @@
     </div>
     @endif
     <br>
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-image" style="background-color:white">
-          <thead>
-            <tr>
-              <th scope="col">Picture</th>
-              <th scope="col">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Remove</th>
-            </tr>
-          </thead>
-      </div>
-      <tbody>
-        @forelse($products as $res)
-        <tr>
-          <td class="w-25">
-            <img src="data:image/png;base64,{{ chunk_split(base64_encode($res->picture)) }}" class="img-fluid img-thumbnail" alt="{{$res->name}}" width="300" height="300">
-          </td>
-          <td style="font-size:20px">{{$res->name}}
-            <ul style="font-size:17px">
-              <li>{{$res->firstSpecification}}</li>
-              <li>{{$res->secondSpecification}}</li>
-              <li>{{$res->thirdSpecification}}</li>
-            </ul>
-          </td>
-          <td style="font-size:30px;font-weight:bold;">{{$res->price}}€</td>
-        </tr>
-        @empty
-        <h5 class="text-center">No Products Like this where Found!</h5>
-        @endforelse
-      </tbody>
-      </table>
-      {!! $products->appends(Request::all())->links('pagination::bootstrap-4') !!} <?php //pagination 
-                                                                                    ?>
-      @if(Session::has('sucess'))
-      <p class="alert alert-success">{{ Session::get('sucess') }}</p>
-      @endif
-    </div>
-
+   
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

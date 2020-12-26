@@ -44,9 +44,11 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class,'logout'
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
-Route::get('/form',[AdminController::class,'create'])->middleware('isAdmin')->name('admin');
+Route::get('/form',[AdminController::class,'create'])->middleware('isAdmin');
 Route::post('/form', [AdminController::class,'store'])->middleware('isAdmin');
-Route::get('/form',[AdminController::class,'idexAllProducts'])->middleware('isAdmin')->name('admin');
 
+Route::delete('/formEditRemove/{id}',[AdminController::class,'removeProducts'])->middleware('isAdmin')->name('product.remove'); //passar ir para saber qual remover
+Route::get('/formEditRemove',[AdminController::class,'idexAllProducts'])->middleware('isAdmin');
+Route::put('/formEditRemove/{id}',[AdminController::class,'editProducts'])->middleware('isAdmin')->name('product.edit');
 
 
