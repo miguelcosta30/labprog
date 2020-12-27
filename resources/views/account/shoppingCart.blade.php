@@ -2,7 +2,6 @@
 @section ('title') Your Cart | Online Store
 @endsection
 @section ('content')
-
 <?php $total = 0; ?>
 <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -51,19 +50,20 @@
         </td>
         </tr>
         @empty
-        <h5 class="text-center">No Phones Found!</h5>
+        <h5 class="text-center">No Products Found!</h5>
         @endforelse
         @endif
     </tbody>
     <tfoot>
         <tr>
             <td><a href="{{ url('/') }}" class="btn btn-dark" style="background-color:#2e4057">Continue Shopping</a>
-                <a href="#todo" class="btn btn-info " style="background-color:#2e4057">Proceed To Checkout</a>
+                <a href="{{url('/account/checkout')}}" class="btn btn-info " style="background-color:#2e4057">Proceed To Checkout</a>
             </td>
             <td colspan="2" class="hidden-xs"></td>
             <td class="hidden-xs text-center"><strong>Total: {{$total}}€</strong></td>
         </tr>
     </tfoot>
 </table>
+
 
 @endsection

@@ -12,21 +12,21 @@ Address | Online Stored
             <div class="control-group">
                 <label class="control-label">Street Name</label>
                 <div class="controls">
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Street Name" name="streetName">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Street Name" name="streetName" value = "{{ old('streetName') ? :  $address[0] }}">
                 </div>
             </div>
             <!-- Door Number-->
             <div class="control-group">
                 <label class="control-label">Door Number</label>
                 <div class="controls">
-                    <input type="text" class="form-control" id="inputAddress" name="doorNumber" placeholder="Door Number">
+                    <input type="text" class="form-control" id="inputAddress" name="doorNumber" placeholder="Door Number" value = "{{ old('doorNumber') ? :  $address[1] }}">
                 </div>
             </div>
             <!-- Floor -->
             <div class="control-group">
                 <label class="control-label">Floor</label>
                 <div class="controls">
-                    <input type="text" class="form-control" id="inputAddress" name="floor" placeholder="Floor">
+                    <input type="text" class="form-control" id="inputAddress" name="floor" placeholder="Floor" value = "{{ old('floor') ? :  $address[2] }}" >
                     <p class="help-block"></p>
                 </div>
             </div>
@@ -34,7 +34,7 @@ Address | Online Stored
             <div class="control-group">
                 <label class="control-label">Zip Code</label>
                 <div class="controls">
-                    <input type="text" class="form-control" id="inputAddress" name="zipcode" placeholder="xxx-xxxx">
+                    <input type="text" class="form-control" id="inputAddress" name="zipcode" placeholder="xxx-xxxx" value = "{{ old('zipcode') ? :  $address[3] }}">
                     <p class="help-block"></p>
                 </div>
             </div>

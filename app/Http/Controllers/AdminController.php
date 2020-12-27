@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 define("PAGINATON",1);
 class AdminController extends Controller
@@ -89,6 +90,10 @@ class AdminController extends Controller
             }
             $product->save();
             return redirect('formEditRemove')->with('sucessRemove', 'Product Edited Sucessefully');
+    }
+
+    public function createPDF() {
+
     }
 
     public function create()
