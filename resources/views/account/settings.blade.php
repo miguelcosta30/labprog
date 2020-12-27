@@ -9,7 +9,6 @@ Settings | Online Store
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="background-color:#2e4057;width:150%;height:110%;font-size:20px">
             <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" style="color:white">Edit Account Info</a>
             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="color:white">Addreses</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" style="color:white">Orders</a>
         </div>
     </div>
     <div class="col-9">
@@ -19,7 +18,7 @@ Settings | Online Store
             </div>
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <label for="exampleFormControlTextarea1">Defined Adress</label>
-                <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="4" style = "width:85%">Street: {{$address[0]}} &#13;&#10; Door Number: {{$address[1]}} &#13;&#10; Floor: {{$address[2]}} &#13;&#10; Zip-Code: {{$address[3]}} </textarea>
+                <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="4" style="width:85%">Street: {{$address[0]}} &#13;&#10; Door Number: {{$address[1]}} &#13;&#10; Floor: {{$address[2]}} &#13;&#10; Zip-Code: {{$address[3]}} </textarea>
                 <div class="form-group">
                     <div class="row">
                         <div class="form-group">
@@ -31,9 +30,6 @@ Settings | Online Store
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                Vai conter uma tabela com as encomendas do cliente
             </div>
         </div>
     </div>

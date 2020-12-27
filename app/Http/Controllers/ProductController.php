@@ -31,6 +31,18 @@ class ProductController extends Controller
         return null;
     }
 
+    public function indexMainPage() {
+        $phones = DB::table('products')->where('type','phone')->limit(4);
+        $proc = DB::table('products')->where('type','processor')->limit(4);
+        $phones = $phones->get();
+        $proc = $proc->get();
+        $array = [
+            'phones' => $phones,
+            'processor'=> $proc
+        ];
+        return view('mainpage',['array' => $array]); 
+    } 
+
     public function indexPhone(Request $request)
     {
         if ($this->checkOrder($request, 'phone') != null) {
@@ -122,4 +134,8 @@ class ProductController extends Controller
         session()->flash('sucess', 'Updated from Cart Sucessfully!');
         return redirect('account/shoppingCart');
     }
+
+         
+        
+
 }

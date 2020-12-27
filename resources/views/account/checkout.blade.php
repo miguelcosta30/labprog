@@ -5,6 +5,8 @@ Checkout | Online Store
 @section ('content')
 <?php $total = 0; ?>
 <br>
+<form method = "post" action = "{{route('account.checkout1')}}">
+    @csrf
 <div class="row">
     <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -33,7 +35,6 @@ Checkout | Online Store
     </div>
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation" novalidate="">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="lastName">Name</label>
@@ -46,12 +47,12 @@ Checkout | Online Store
                 <div class="input-group">
                     <div class="input-group-prepend">
                     </div>
-                    <input type="text" class="form-control"  placeholder="" required="" name = "streetName" readonly value = "{{ old('streetName') ? :  $address[1] }}" > </input>
+                    <input type="text" class="form-control" placeholder="" required="" name = "streetName" readonly value = "{{ old('streetName') ? :  $address[1] }}" > </input>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="email">ZipCode</label>
-                <input type="text" class="form-control"  placeholder="" readonly name = "zipcode" value = "{{ old('zipcode') ? :  $address[3] }}"> </input>
+                <input type="text" class="form-control" placeholder="" readonly name = "zipcode" value = "{{ old('zipcode') ? :  $address[3] }}"> </input>
             </div>
             <div class="mb-3">
                 <label for="address">Door Number</label>
@@ -83,14 +84,24 @@ Checkout | Online Store
                 </div>
             </div>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name = "payed">
                 <label class="form-check-label" for="exampleCheck1">Considered Payed(Test Email and Bill)</label>
             </div>
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Order</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" type="submit" href = "">Order</button>
         </form>
     </div>
 </div>
+@if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 <br>
 
 @endsection

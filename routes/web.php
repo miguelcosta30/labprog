@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Route::get('/', function () {return view('mainpage');});
+Route::get('/', [ProductController::class,'indexMainPage']);
 
 Route::get('/catalogue/phones',[ProductController::class,'indexPhone']);
 Route::get('/catalogue/consoles',[ProductController::class,'indexConsole']);
@@ -36,6 +37,8 @@ Route::get('/account/addAddress',[UserController::class,'indexMorada']);
 Route::post('/account/addAddress',[UserController::class,'updateMorada']);    
 
 Route::get('/account/checkout',function() {return view ('account.checkout');})->middleware('auth');
+Route::post('account/checkout',[OrdersController::class,'createOrder'])->middleware('auth')->name('account.checkout1');
+
 Route::get('account/checkout',[UserController::class,'indexMorada']);
 Route::get('/account/shoppingCart',function() {return view ('account.shoppingCart');})->middleware('auth');
 Route::get('/addToCart/{id}',[ProductController::class,'addToCart'])->middleware('auth');

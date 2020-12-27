@@ -47,7 +47,6 @@ class UserController extends Controller
     public function indexMorada() {
         $id = Auth::id();
         $user = User::findorFail($id);
-        error_log('teste');
         $array = array($user->streetName, $user->doorNumber, $user->floor, $user->zipcode,$user->name);
         if (URL::current() === 'http://127.0.0.1:8000/account/settings') {
             return view('/account/settings', ['address' => $array]);
