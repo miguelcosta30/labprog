@@ -67,6 +67,8 @@ class OrdersController extends Controller
                         $order->total = $total;
                         $this->sendEmail($prod, $total); //TO-DO
                         $order->save();
+                        $request->session()->forget('shoppingCart');
+                        return redirect('/');
                     }
                 } else {
                     return redirect()->back()->withErrors('You have to add to your card to buy something'); //done
