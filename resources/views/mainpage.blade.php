@@ -34,58 +34,35 @@ Online Store
     <thead>
         <tr style="background-color:#2e4057;">
             <th scope="col" style="color:white;">PHONES</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($array['phones'] as $phone)
-        <tr>
-            <td scope="col"><img src="data:image/png;base64,{{ chunk_split(base64_encode($phone->picture)) }}" alt="iphone 12" Height="300" width="250"></img></td>
-        </tr>
-        <tr>
-            <td scope="col"><a>{{$phone->name}}</a></td>
-            <td>
-                <p></p>
-            </td>
-        </tr>
-        <tr>
-            <td scope="col">
-                <h1>{{$phone->price}}€</h1>
-            </td>
-            @endforeach
-        </tr>
-    </tbody>
 </table>
+    <div class="row">
+        @foreach($array['phones'] as $phone)
+        <div class="col">
+            <img src="data:image/png;base64,{{ chunk_split(base64_encode($phone->picture)) }}" alt="iphone 12" Height="250" width="250"></img>
+            <p style ="font-size:17px ">{{$phone->name}}</p>
+            <h1>{{$phone->price}}€</h1>
+            <p class="btn-holder"><a href="{{url('/addToCart/'.$phone->id)}}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
+        </div>
+        @endforeach
+    </div>
 <table class="table table-borderless">
     <thead>
         <tr style="background-color:#2e4057;">
             <th scope="col" style="color:white;">PROCESSORS</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($array['processor'] as $processor)
-        <tr>
-            <td scope="col"><img src="data:image/png;base64,{{ chunk_split(base64_encode($processor->picture)) }}" alt="iphone 12" Height="250" width="250"></img></td>
-        </tr>
-        <tr>
-            <td scope="col"><a>{{$processor->name}}</a></td>
-            <td>
-                <p></p>
-
-        </tr>
-        <tr>
-            <td scope="col">
-                <h1>{{$processor->price}}€</h1>
-            </td>
-            
-            @endforeach
-        </tr>
-    </tbody>
 </table>
+    <div class="row">
+        @foreach($array['processor'] as $processor)
+        <div class="col">
+            <img src="data:image/png;base64,{{ chunk_split(base64_encode($processor->picture)) }}" alt="iphone 12" Height="250" width="250"></img>
+            <p style ="font-size:17px">{{$processor->name}}</p>
+            <h1>{{$processor->price}}€</h1>
+            <p class="btn-holder"><a href="{{url('/addToCart/'.$processor->id)}}" class="btn btn-primary btn-block text-center" role="button" >Add to cart</a> </p>
+        </div>
+        @endforeach
+    </div>
 </form>
 @endsection

@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [ProductController::class,'indexMainPage']);
+Route::get('/includes/header', [UserController::class,'getType']);
+
 
 Route::get('/catalogue/phones',[ProductController::class,'indexPhone']);
 Route::get('/catalogue/consoles',[ProductController::class,'indexConsole']);

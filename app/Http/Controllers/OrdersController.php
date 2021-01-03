@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Mail;
+use Stripe;
 
 class OrdersController extends Controller
 {
-    public function sendEmail($prod, $total)
-    {
+    public function sendEmail($prod, $total) {
         $id = Auth::id();
         $user = User::findorFail($id);
         $data = [
@@ -37,10 +37,11 @@ class OrdersController extends Controller
         return redirect('/');
     }
 
-    public function createOrder(Request $request)
-    { // VER O STOCK
-        if (!empty($request->payed)) { //verificar se foi pago
-            error_log("teste");
+    public function createOrder(Request $request) { // VER O STOCK
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        //$validator = $this->creditCardValidator($request);
+        //if ($request->payed) { //verificar se foi pago
+           // error_log("teste");
             $id = Auth::id();
             $user = User::findorFail($id);
             if ($user->streetName != null) {
@@ -52,7 +53,7 @@ class OrdersController extends Controller
                             $aux = Product::findorFail($idP); //encontrar o produto com aquele id
                             if ($aux->stock > 0) {
                                 if ($aux->stock - $prod[$idP][3] >= 0) { // CASO O NUMERO QUE QUEREMOS COMPRAR SEJA MAIOR QUE O DISPONIVEL
-                                    $aux->stock -= $prod[$idP][3];
+                                    $aux->stock -= $prod[$idP][3]; // stock = stock - quantidade do prod q compramos
                                     $total += $prod[$idP][3] * $prod[$idP][2];
                                     $aux->save();
                                 } else {
@@ -65,7 +66,14 @@ class OrdersController extends Controller
                         $order = new Orders();
                         $order->user_id = $id;
                         $order->total = $total;
-                        $this->sendEmail($prod, $total); //TO-DO
+                        $this->sendEmail($prod, $total);
+                        $token = $_POST['stripeToken'];
+                        $charge = \Stripe\Charge::create([
+                            'amount' => $total * 100,
+                            'currency' => 'eur',
+                            'description' => 'Payment at your Online Store',
+                            'source' => $token
+                        ]);
                         $order->save();
                         $request->session()->forget('shoppingCart');
                         return redirect('/');
@@ -76,9 +84,9 @@ class OrdersController extends Controller
             } else {
                 return redirect()->back()->withErrors('Please enter an Address');
             }
-        } else {
-            return redirect()->back()->withErrors('You have to pay for the Order First'); //done
-        }
+        // } else {
+        //     return redirect()->back()->withErrors('Error, please pay your bill'); //done
+        //}
         return redirect('account/checkout');
     }
 }

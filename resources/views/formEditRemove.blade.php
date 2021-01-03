@@ -23,8 +23,11 @@
                     <a class="nav-link" href="{{route('form')}}">Insert <span class="sr-only"></span></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('formEditRemove')}}">Edit/Remove <span class="sr-only"></span></a>
+                    <a class="nav-link active" href="{{route('formEditRemove')}}">Edit/Remove <span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+          <a class="nav-link" href="{{url('/')}}">Mainpage</a>
+          </li>
             </ul>
         </div>
     </nav>
@@ -53,11 +56,11 @@
                     <td class="w-25">
                         <img src="data:image/png;base64,{{ chunk_split(base64_encode($res->picture)) }}" class="img-fluid img-thumbnail" alt="{{$res->name}}" width="300" height="300">
                     </td>
-                    <td style="font-size:20px"> <input type="text" name="product_name" id="title" class="form-control" value="{{ old('product_name') ? :  $res->name }}">
+                    <td style="font-size:20px"> <input type="text" name="product_name" id="title" class="form-control" value="{{ old('product_name') ? : $res->name }}">
                         <ul style="font-size:17px">
-                            <li><input type="text" name="first_spec" id="title" class="form-control" value="{{ old('first_spec') ? :  $res->firstSpecification }}"></li>
-                            <li><input type="text" name="second_spec" id="title" class="form-control" value="{{ old('second_spec') ? :  $res->secondSpecification }}"></li>
-                            <li><input type="text" name="third_spec" id="title" class="form-control" value="{{ old('third_spec') ? :  $res->thirdSpecification }}"></li>
+                            <li><input type="text" name="first_spec" id="title" class="form-control" value="{{ old('first_spec') ? : $res->firstSpecification }}"></li>
+                            <li><input type="text" name="second_spec" id="title" class="form-control" value="{{ old('second_spec') ? : $res->secondSpecification }}"></li>
+                            <li><input type="text" name="third_spec" id="title" class="form-control" value="{{ old('third_spec') ? : $res->thirdSpecification }}"></li>
                         </ul>
                     </td>
                     <td><input type="text" name="product_price" id="title" class="form-control" value="{{ old('product_price') ? :  $res->price}}"></td>

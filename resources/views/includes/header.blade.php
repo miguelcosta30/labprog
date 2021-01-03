@@ -45,7 +45,13 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{{ url('/account/settings') }}">Settings</a>
+                @if(Auth::user()->isAdmin())
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ url('/form') }}">BackOffice</a>
+                <div class="dropdown-divider"></div>
+                @else
+                <div class="dropdown-divider"></div>
+                @endif
                 <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
             </div>
         </div>

@@ -53,8 +53,7 @@ class ProductController extends Controller
         return view('/catalogue/phones', ['phones' => $phones]);
     }
 
-    public function indexGraphic(Request $request)
-    {
+    public function indexGraphic(Request $request) {
         if ($aux = $this->checkOrder($request, 'graphic') != null) {
             $aux = $this->checkOrder($request, 'graphic');
             return view('/catalogue/graphics', ['graphicCard' => $aux]);
@@ -131,7 +130,7 @@ class ProductController extends Controller
             $cart[$request->idSub][3] = $request->quantityProd; //alterar a quantidade
             session()->put('shoppingCart', $cart);
         }
-        session()->flash('sucess', 'Updated from Cart Sucessfully!');
+        session()->flash('sucess', 'Updated Cart Sucessfully!');
         return redirect('account/shoppingCart');
     }
 

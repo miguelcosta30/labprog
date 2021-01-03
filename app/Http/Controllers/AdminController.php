@@ -7,8 +7,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
 
 define("PAGINATON",1);
-class AdminController extends Controller
-{
+class AdminController extends Controller {
 
     public function validateProd(Request $request, $aux)
     {
@@ -19,7 +18,7 @@ class AdminController extends Controller
                 'first_spec' => ['required', 'string'],
                 'second_spec' => ['required', 'string'],
                 'third_spec' => ['required', 'string'],
-                'product_price' => ['required', 'between:0,100000.00'],
+                'product_price' => ['required', 'between:0,100000.00','numeric'],
                 'product_stock' => ['required', 'integer', 'min:0'], //0 ou 1 
                 'product_type' => ['required'],
                 'picture' => ['required']
@@ -32,7 +31,7 @@ class AdminController extends Controller
                 'first_spec' => ['required', 'string'],
                 'second_spec' => ['required', 'string'],
                 'third_spec' => ['required', 'string'],
-                'product_price' => ['required', 'between:0,100000.00'],
+                'product_price' => ['required', 'between:0,100000.00','numeric'],
                 'product_stock' => ['required', 'integer', 'min:0'], //0 ou 1 
                 'product_type' => ['required'],
             ]);

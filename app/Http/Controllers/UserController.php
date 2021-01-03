@@ -55,6 +55,11 @@ class UserController extends Controller
             return view('/account/addAddress', ['address' => $array]);
         } 
             return view('account/checkout', ['address' => $array]);
-        
+    }
+
+    public function isAdmin() {
+        $id = Auth::id();
+        $user = User::findorFail($id);
+        return $user->type === 'admin';
     }
 }
